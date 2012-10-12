@@ -1,0 +1,12 @@
+name: SnowGolems
+main: me.mango.snowgolems.SnowGolems
+version: v1.3.1
+description: Lets admins trail snow behind them - like snow golems!
+author: Mango
+commands:
+    sg:
+      description: Toggles Snow Golem mode
+      usage: /<command>
+    sghelp:
+      description: Shows the help page
+      usage: /<command>
