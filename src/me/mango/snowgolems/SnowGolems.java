@@ -17,16 +17,35 @@ package me.mango.snowgolems;
 
 import java.util.ArrayList;
 
+import net.milkbowl.vault.permission.Permission;
+
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
+import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class SnowGolems extends JavaPlugin {
 
 	public final ArrayList<Player> snowPlayers = new ArrayList<Player>();
+	public Permission permission = null;
+
+    private boolean setupPermissions() {
+        RegisteredServiceProvider<Permission> rsp = getServer().getServicesManager().getRegistration(Permission.class);
+        permission = rsp.getProvider();
+        return permission != null;
+    }
+    
+    private void permissionsCheck() {
+    	if(setupPermissions()) {
+    		getLogger().info("Permissions plugin detected and hooked");
+    	} else {
+    		getLogger().warning("Vault did not find a permissions plugin - defaulting to OPs");
+    	}
+    }
 	
 	@Override
 	public void onEnable() {
+		permissionsCheck();
 		new SGListener(this);
 		getCommand("sg").setExecutor(new SGCommandExecutor(this));
 		getCommand("sghelp").setExecutor(new SGCommandExecutor(this));

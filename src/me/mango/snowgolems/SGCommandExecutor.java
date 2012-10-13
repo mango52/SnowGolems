@@ -17,38 +17,38 @@ public class SGCommandExecutor implements CommandExecutor {
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args) {
 		String commandName = cmd.getName().toLowerCase();
-		if (sender.isOp() && (sender instanceof Player)) {
+		if (((plugin.permission.has(sender, "snowgolems.use")) || (sender.isOp())) && (sender instanceof Player)) {
 			if (commandName.equalsIgnoreCase("sg")) {
 				if (!plugin.snowPlayers.contains((Player) sender)) {
 					plugin.snowPlayers.add((Player) sender);
-					sender.sendMessage(ChatColor.GREEN + "You have enabled Snow Golem mode!");
+					sender.sendMessage(ChatColor.GREEN + "You have enabled snow golem mode!");
 					return true;
 				} else {
 					if (plugin.snowPlayers.contains((Player) sender)) {
 						plugin.snowPlayers.remove((Player) sender);
-						sender.sendMessage(ChatColor.DARK_RED + "You have disabled Snow Golem mode.");
+						sender.sendMessage(ChatColor.DARK_RED + "You have disabled snow golem mode.");
 						return true;
 					} else {
-						sender.sendMessage("You already have Snow Golem mode!");
+						sender.sendMessage("You already have snow golem mode!");
 					}
 				}
 				if (commandName.equalsIgnoreCase("sgdisable")) {
 					if (plugin.snowPlayers.contains((Player) sender)) {
 						plugin.snowPlayers.remove((Player) sender);
-						sender.sendMessage(ChatColor.DARK_RED + "You have disabled Snow Golem mode.");
+						sender.sendMessage(ChatColor.DARK_RED + "You have disabled snow golem mode.");
 						return true;
 					} else {
-						sender.sendMessage("You already have Snow Golem mode disabled!");
+						sender.sendMessage("You already have snow golem mode disabled!");
 					}
 					if (commandName.equalsIgnoreCase("sghelp")) {
-						sender.sendMessage(ChatColor.GOLD + "SnowGolem Help:");
-						sender.sendMessage(ChatColor.GREEN + "/sg - Toggles Snow Golem mode. (Requires OP)");
+						sender.sendMessage(ChatColor.GOLD + "SnowGolems Help:");
+						sender.sendMessage(ChatColor.GREEN + "/sg - Toggles snow golem mode. (Requires OP or permission)");
 						sender.sendMessage(ChatColor.GREEN + "/sghelp - Displays this help message.");
 						return true;
 					}
 				}
 			} else {
-				sender.sendMessage(ChatColor.RED + "Only OPs are allowed to use that command!");
+				sender.sendMessage(ChatColor.RED + "You don't have permission to do that!");
 				return true;
 			}
 			return false;
