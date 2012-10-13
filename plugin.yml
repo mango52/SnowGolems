@@ -1,6 +1,6 @@
 name: SnowGolems
 main: me.mango.snowgolems.SnowGolems
-version: b1
+version: b2
 description: Lets admins trail snow behind them - like snow golems!
 author: Mango
 commands:
