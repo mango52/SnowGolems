@@ -19,7 +19,6 @@ import java.util.ArrayList;
 
 import net.milkbowl.vault.permission.Permission;
 
-import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -49,11 +48,11 @@ public class SnowGolems extends JavaPlugin {
 		new SGListener(this);
 		getCommand("sg").setExecutor(new SGCommandExecutor(this));
 		getCommand("sghelp").setExecutor(new SGCommandExecutor(this));
-		Bukkit.getLogger().info(getDescription().getName() + " " + getDescription().getVersion() + " by Mango enabled.");
+		getLogger().info(getDescription().getName() + " " + getDescription().getVersion() + " by Mango enabled.");
 	}
 
 	@Override
 	public void onDisable() {
-		Bukkit.getLogger().info(getDescription().getName() + " " + getDescription().getVersion() + " by Mango disabled.");
+		getLogger().info(getDescription().getName() + " " + getDescription().getVersion() + " by Mango disabled.");
 	}
 }
